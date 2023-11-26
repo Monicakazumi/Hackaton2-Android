@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hachathon2.datasource.BuscarUsuarios;
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         edtUsuario = findViewById(R.id.edtUsuario);
         edtSenha = findViewById(R.id.edtSenha);
-        btnEntrar = findViewById(R.id.btn_entrar);
+        btnEntrar = findViewById(R.id.btnEntrar);
 
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         String senhaDigitada = edtSenha.getText().toString();
 
         // Substitua "sua_url_da_api" pela URL real da sua API
-        String apiUrl = "http://192.168.3.30:3000/usuario";
+        String apiUrl = "http://localhost:3000/usuario";
 
         // Cria uma instância de BuscarUsuarios para verificar o login
         BuscarUsuarios buscarUsuarios = new BuscarUsuarios(usuarioDigitado, senhaDigitada, new BuscarUsuarios.VerificacaoLoginListener() {
@@ -50,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // Login falhou, exibe uma mensagem de erro
                     Toast.makeText(MainActivity.this, "Credenciais inválidas", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, texto, Toast.LENGTH_LONG).show();
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+                    alerta.setTitle("Usuário ou Senha Inválida!");;
+                    alerta.setNeutralButton("OK", null);
+                    alerta.show();
                 }
             }
         });

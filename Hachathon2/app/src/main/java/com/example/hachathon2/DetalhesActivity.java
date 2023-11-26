@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class DetalhesActivity extends AppCompatActivity {
 
-    TextView txtNome;
+    TextView txtNome, txtOrigem, txtDestino, txtHora, txtPreco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,10 @@ public class DetalhesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes);
 
         txtNome = findViewById(R.id.txtNome);
+        txtOrigem = findViewById(R.id.txtOrigem);
+        txtDestino = findViewById(R.id.txtDestino);
+        txtHora = findViewById(R.id.txtHora);
+        txtPreco = findViewById(R.id.txtPreco);
 
         Intent caminhoRecebido = getIntent();
 
@@ -24,6 +28,11 @@ public class DetalhesActivity extends AppCompatActivity {
 
             if (parametros != null) {
                 txtNome.setText(parametros.getString("nome"));
+                txtOrigem.setText(parametros.getString("rotaInicial"));
+                txtNome.setText(parametros.getString("rotaFinal"));
+                txtNome.setText(parametros.getString("horario"));
+                txtNome.setText(parametros.getString("preco"));
+
             }
         }
     }
