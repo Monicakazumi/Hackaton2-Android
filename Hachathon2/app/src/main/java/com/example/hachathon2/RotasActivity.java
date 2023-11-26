@@ -27,11 +27,11 @@ public class RotasActivity extends ListActivity {
         try {
             listaDados = new BuscarRotas().execute(ConfigRotas.link).get();
 
-            ListAdapter adapter = new SimpleAdapter(this, //this - onde a classe que tem o objeto listView no XML
-                    dadosToMap(listaDados), //lista com os dados em formato HashMap
-                    R.layout.listview_modelo, //layout de modelo para cada item da lista
-                    new String[] { "nome" },  //campo dos dados que sera carregado na listaDados
-                    new int[] { R.id.txtRota } //em que item da lista carregara os dados do listview
+            ListAdapter adapter = new SimpleAdapter(this,
+                    dadosToMap(listaDados),
+                    R.layout.listview_modelo,
+                    new String[] { "nome" },
+                    new int[] { R.id.txtNome }
             );
 
             setListAdapter(adapter);
@@ -47,8 +47,12 @@ public class RotasActivity extends ListActivity {
 
         for (int i = 0; i< listaDados.size(); i++) {
             HashMap<String,String> item = new HashMap<>();
-            item.put("id", String.valueOf(listaDados.get(i).id));
+            item.put("id", String.valueOf(listaDados.get(i).id()));
             item.put("nome", listaDados.get(i).nome);
+            item.put("rotaInicial", listaDados.get(i).origem);
+            item.put("rotaFinal", listaDados.get(i).destino);
+            item.put("horario", listaDados.get(i).hora);
+            item.put("preco", listaDados.get(i).preco);
 
             lista.add(item);
         }
@@ -60,20 +64,19 @@ public class RotasActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        //positon -> tem o indice do item que foi clicado na ListView
         Rota rota = listaDados.get(position);
 
-        //criando o caminho para a tela de Detalhes
         Intent tela = new Intent(RotasActivity.this, DetalhesActivity.class);
 
-        //criando objeto para enviar os dados para a detalhes
         Bundle parametros = new Bundle();
         parametros.putString("nome", rota.nome);
+        parametros.putString("rotaInicial", rota.origem);
+        parametros.putString("rotaFinal", rota.destino);
+        parametros.putString("horario", rota.hora);
+        parametros.putString("preco", rota.preco);
 
-        //adicionando os paramentros no caminho da tela - put para adiciona
         tela.putExtras(parametros);
 
-        //abrindo a tela de detralhes
         startActivity(tela);
     }
 }
