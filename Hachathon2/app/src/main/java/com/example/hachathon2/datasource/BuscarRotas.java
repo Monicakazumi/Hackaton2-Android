@@ -42,6 +42,10 @@ public class BuscarRotas extends AsyncTask<String, Void, ArrayList<Rota>> {
 
                 Rota rota = new Rota();
                 rota.nome = item.getString("nome");
+                rota.origem = item.getString("rotaInicial");
+                rota.destino = item.getString("rotaFinal");
+                rota.hora = item.getString("horario");
+                rota.preco = item.getString("preco");
 
                 listaDados.add(rota);
             }

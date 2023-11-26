@@ -31,7 +31,7 @@ public class RotasActivity extends ListActivity {
                     dadosToMap(listaDados),
                     R.layout.listview_modelo,
                     new String[] { "nome" },
-                    new int[] { R.id.txtNome }
+                    new int[] { R.id.txtRota }
             );
 
             setListAdapter(adapter);

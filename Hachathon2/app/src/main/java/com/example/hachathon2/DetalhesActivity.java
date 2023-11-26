@@ -29,10 +29,9 @@ public class DetalhesActivity extends AppCompatActivity {
             if (parametros != null) {
                 txtNome.setText(parametros.getString("nome"));
                 txtOrigem.setText(parametros.getString("rotaInicial"));
-                txtNome.setText(parametros.getString("rotaFinal"));
-                txtNome.setText(parametros.getString("horario"));
-                txtNome.setText(parametros.getString("preco"));
-
+                txtDestino.setText(parametros.getString("rotaFinal"));
+                txtHora.setText(parametros.getString("horario"));
+                txtPreco.setText(parametros.getString("preco"));
             }
         }
     }

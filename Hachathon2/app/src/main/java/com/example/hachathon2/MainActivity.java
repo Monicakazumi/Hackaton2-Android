@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         String senhaDigitada = edtSenha.getText().toString();
 
         // Substitua "sua_url_da_api" pela URL real da sua API
-        String apiUrl = "http://localhost:3000/usuario";
+        String apiUrl = "http://192.168.3.30:3000/usuario";
 
         // Cria uma instância de BuscarUsuarios para verificar o login
         BuscarUsuarios buscarUsuarios = new BuscarUsuarios(usuarioDigitado, senhaDigitada, new BuscarUsuarios.VerificacaoLoginListener() {
